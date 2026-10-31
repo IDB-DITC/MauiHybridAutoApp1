@@ -1,0 +1,56 @@
+﻿@page "/test"
+@using Utilities
+@inject ILocalStorage Service
+@* @rendermode InteractiveServer *@
+
+@* @implements IDisposable *@
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+<div class="bg-black text-white m-3">
+    Test Data Last Saved at : @this.data
+</div>
+
+<div class="m-3">
+    <button class="btn btn-primary" @onclick=SaveToLocal>Save Data to Local</button>
+</div>
+
+@code {
+    //private TestData data = new TestData(string.Empty);
+    private string? data = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await this.GetData();
+        //this.Service.StorageChanged += this.DataChanged;
+    }
+
+    // private async void DataChanged(object? sender, EventArgs e)
+    // {
+    //     await this.GetData();
+    //     await this.InvokeAsync(StateHasChanged);
+    // }
+
+    private async Task<bool> GetData()
+    {
+        var result = await this.Service.GetStringAsync("TestData");
+        data = result;
+        return result is not null;
+    }
+
+    private async Task SaveToLocal()
+    {
+        var newData = $"Saved at {DateTime.Now.ToLongTimeString()}";
+        await this.Service.SaveStringAsync("TestData", newData);
+        await this.GetData();
+    }
+
+    // public void Dispose()
+    //     => this.Service.StorageChanged -= this.DataChanged;
+
+    //public record TestData(string LastSaved);
+}

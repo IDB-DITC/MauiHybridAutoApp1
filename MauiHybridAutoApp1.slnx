@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MauiHybridAutoApp1/MauiHybridAutoApp1.Shared/MauiHybridAutoApp1.Shared.csproj" />
+  <Project Path="MauiHybridAutoApp1/MauiHybridAutoApp1.Web.Client/MauiHybridAutoApp1.Web.Client.csproj" />
+  <Project Path="MauiHybridAutoApp1/MauiHybridAutoApp1.Web/MauiHybridAutoApp1.Web.csproj" />
+  <Project Path="MauiHybridAutoApp1/MauiHybridAutoApp1/MauiHybridAutoApp1.csproj" />
+</Solution>
